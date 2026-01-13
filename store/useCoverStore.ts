@@ -161,3 +161,38 @@ export const useCoverStore = create<CoverState>((set) => ({
   updateBackground: (settings) =>
     set((state) => ({ background: { ...state.background, ...settings } })),
 }));
+
+// store/coverStore.ts
+import { create } from 'zustand';
+
+interface CoverState {
+  // 图标配置
+  iconConfig: {
+    color: string; // 图标颜色
+    // 其他配置...
+  };
+  // 文字配置
+  textConfig: {
+    color: string; // 文字颜色
+    // 其他配置...
+  };
+  // 更新图标颜色
+  setIconColor: (color: string) => void;
+  // 更新文字颜色
+  setTextColor: (color: string) => void;
+}
+
+export const useCoverStore = create<CoverState>((set) => ({
+  iconConfig: {
+    color: '#000000', // 默认黑色
+  },
+  textConfig: {
+    color: '#333333', // 默认深灰
+  },
+  setIconColor: (color) => set((state) => ({
+    iconConfig: { ...state.iconConfig, color },
+  })),
+  setTextColor: (color) => set((state) => ({
+    textConfig: { ...state.textConfig, color },
+  })),
+}));
